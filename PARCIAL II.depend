@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1594435895 source:c:\users\matukhan\documents\parcial ii\genericas.c
+	"genericas.h"
+
+1594594432 c:\users\matukhan\documents\parcial ii\genericas.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1595701271 c:\users\matukhan\documents\parcial ii\utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1595701559 source:c:\users\matukhan\documents\parcial ii\controller.c
+	"Controller.h"
+
+1595696767 c:\users\matukhan\documents\parcial ii\linkedlist.h
+
+1595638669 c:\users\matukhan\documents\parcial ii\viaje.h
+	"utn.h"
+
+1595170648 c:\users\matukhan\documents\parcial ii\parser.h
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"viaje.h"
+	"piloto.h"
+
+1595697402 source:c:\users\matukhan\documents\parcial ii\informes.c
+	"informes.h"
+
+1595696767 source:c:\users\matukhan\documents\parcial ii\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Controller.h"
+
+1595697083 source:c:\users\matukhan\documents\parcial ii\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Controller.h"
+	"genericas.h"
+
+1595702821 c:\users\matukhan\documents\parcial ii\controller.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"informes.h"
+
+1595701271 source:c:\users\matukhan\documents\parcial ii\utn.c
+	"utn.h"
+
+1595171515 source:c:\users\matukhan\documents\parcial ii\parser.c
+	"parser.h"
+
+1595638208 source:c:\users\matukhan\documents\parcial ii\viaje.c
+	<stdlib.h>
+	"viaje.h"
+	<string.h>
+
+1595702821 c:\users\matukhan\documents\parcial ii\informes.h
+	<stdio.h>
+	<stdlib.h>
+	"parser.h"
+
+1595172208 c:\users\matukhan\documents\parcial ii\piloto.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1595172465 source:c:\users\matukhan\documents\parcial ii\piloto.c
+	"piloto.h"
+
