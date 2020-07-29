@@ -15,6 +15,8 @@ ePiloto* piloto_new(void);
 ePiloto* piloto_newParameters(int idPiloto, char* nombrePiloto);
 int piloto_printPiloto(ePiloto* this);
 
+int piloto_getAll(ePiloto* this, int* idPiloto, char* nombrePiloto);
+
 int piloto_getNombrePiloto(ePiloto* this,char* nombrePiloto);
 int piloto_setNombrePiloto(ePiloto* this,char* nombrePiloto);
 

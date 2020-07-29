@@ -4,14 +4,10 @@
 #include "genericas.h"
 int main()
 {
-    /**
-    *Sacar el validar por Id de los parsers porque ya no necesito dar de alta manual
-    *Validar opciones para se pueda acceder a ellas solamente si se entro a la opcion 1
-    */
     int option;
     LinkedList* listaViajes = ll_newLinkedList();
     LinkedList* listaPilotos = ll_newLinkedList();
-    int lastId = 0;
+    int flag  = 0;
     do
     {
         if(gen_mainMenu(&option))
@@ -19,58 +15,68 @@ int main()
             switch(option)
             {
             case 1:
-                lastId = controller_Sanchez_loadVuelosFromText("Vuelos.csv", listaViajes);
-                if(lastId != -1 && controller_Sanchez_loadPilotosFromText("pilotos.csv", listaPilotos) > 0)
+                if(!controller_Sanchez_loadVuelosFromText("Vuelos.csv", listaViajes)
+                        && !controller_Sanchez_loadPilotosFromText("pilotos.csv", listaPilotos))
                 {
-                    printf("cargado con exito");
+                    printf("\nTxt de vuelos y txt de pilotos cargados.\n");
+                    flag = 1;
                 }
                 break;
             case 2:
-                if(!controller_Sanchez_PrintVuelos(listaViajes, listaPilotos))
+                if(flag == 0 || controller_Sanchez_PrintVuelos(listaViajes, listaPilotos) == -1 )
                 {
-                    printf("mostrado mostro");
+                    printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
                 }
                 break;
             case 3:
-                if(!controller_Sanchez_CountPasajeros(listaViajes))
+                if(flag == 0 || controller_Sanchez_CountPasajeros(listaViajes) == -1)
                 {
-                    printf("\nMostrado mostro");
+                    printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
                 }
                 break;
             case 4:
-                if(!controller_Sanchez_CountPasajerosIrlanda(listaViajes))
+                if(flag == 0 || controller_Sanchez_CountPasajerosIrlanda(listaViajes) == -1)
                 {
-                    printf("\nMostrado mostro");
+                    printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
                 }
                 break;
             case 5:
-                if(!controller_Sanchez_FiltrarVuelosCortos("VuelosCortos.csv", listaViajes))
+                if(flag == 0 || controller_Sanchez_FiltrarVuelosCortos("VuelosCortos.csv", listaViajes) == -1)
                 {
-                    printf("Csv Creado con exito");
+                    printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
+                }
+                else
+                {
+                    printf("\n Csv con nombre: 'VuelosCortos.csv' fue creado con exito \n");
                 }
                 break;
             case 6:
-                if(!controller_Sanchez_ListarVuelosPortugal(listaViajes, listaPilotos))
+                if(flag == 0 || controller_Sanchez_ListarVuelosPortugal(listaViajes, listaPilotos) == -1)
                 {
-                    printf("mostrado!");
+                    printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
                 }
                 break;
             case 7:
-                if(!controller_Sanchez_ListarVuelosSinAlexLifeson(listaViajes, listaPilotos))
+                if(flag == 0 || controller_Sanchez_ListarVuelosSinAlexLifeson(listaViajes, listaPilotos) == -1)
                 {
-                    printf(" Impreso ! ");
+                   printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
                 }
                 break;
             case 8:
-                if(!Controller_Sanchez_FiltrarPilotoPorNombre(listaPilotos))
+                if(flag == 0 || Controller_Sanchez_FiltrarPilotoPorNombre(listaPilotos) == -1)
                 {
-                    printf("Impreso !");
+                    printf("\nOcurrio un error. Cargue el Archivo txt desde la opcion 1.\n");
                 }
                 break;
+            case 9:
+                if(!Controller_Sanchez_PreciosDeVuelos(listaViajes, listaPilotos))
+                {
+                    printf("\n\nTxt cargado con exito!\n\n");
+                }
             }
         }
-        system("pause");
+        printf("\n\n");
     }
-    while(option != 9);
+    while(option != 10);
     return 0;
 }

@@ -1,31 +1,32 @@
 #include "parser.h"
 
-/** \brief Toma uno a uno los datos de los empleados
+/** \brief Toma uno a uno los datos de los Vuelos
  *
  * \param pFile FILE* Puntero a un archivo
  * \param pArrayList LinkedList* Puntero a la lista enlazada
- * \return int [-1] si puntero a archivo o puntero a la lista son NULL, caso contrario retorna el ultimo ID
+ * \return int [-1] si puntero a archivo o puntero a la lista son NULL,[0] caso contrario
  *
  */
 int parser_FromTextViajes(FILE* pFile, LinkedList* pArrayList)
 {
     int retorno = -1;
     Viaje* pAuxViaje;
-    char bufferScanner[7][500];
+    char idVuelo[500], idAvion[500], idPiloto[500], fecha[500], destino[500], cantPasajeros[500];
+    char horaDespegue[500], horaLlegada[500];
     if(pFile!=NULL && pArrayList!=NULL)
     {
-        fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferScanner[0], bufferScanner[1], bufferScanner[2], bufferScanner[3], bufferScanner[4], bufferScanner[5], bufferScanner[6], bufferScanner[7]);
+        fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",idVuelo, idAvion, idPiloto, fecha, destino, cantPasajeros, horaDespegue, horaLlegada);
         do
         {
-            if(fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",bufferScanner[0], bufferScanner[1], bufferScanner[2], bufferScanner[3], bufferScanner[4], bufferScanner[5], bufferScanner[6], bufferScanner[7])==8)
+            if(fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",idVuelo, idAvion, idPiloto, fecha, destino, cantPasajeros, horaDespegue, horaLlegada)==8)
             {
-                pAuxViaje =  viaje_newParameters(atoi(bufferScanner[0]), atoi(bufferScanner[1]), atoi(bufferScanner[2]), bufferScanner[3],  bufferScanner[4], atoi(bufferScanner[5]), atoi(bufferScanner[6]), atoi(bufferScanner[7]));
+                pAuxViaje =  viaje_newParameters(atoi(idVuelo), atoi(idAvion), atoi(idPiloto), fecha, destino, atoi(cantPasajeros), atoi(horaDespegue), atoi(horaLlegada));
 
                 if(pAuxViaje != NULL)
                 {
                     if(!ll_add(pArrayList, pAuxViaje))
                     {
-                        retorno = atoi(bufferScanner[0]);
+                        retorno = 0;
                     }
                 }
             }
@@ -40,7 +41,13 @@ int parser_FromTextViajes(FILE* pFile, LinkedList* pArrayList)
     }
     return retorno;
 }
-
+/** \brief Toma uno a uno los datos de los Pilotos
+ *
+ * \param pFile FILE* Puntero a un archivo
+ * \param pArrayList LinkedList* Puntero a la lista enlazada
+ * \return int [-1] si puntero a archivo o puntero a la lista son NULL,[0] caso contrario
+ *
+ */
 int parser_FromTextPilotos(FILE* pFile, LinkedList* pArrayList)
 {
     int retorno = -1;
@@ -60,7 +67,7 @@ int parser_FromTextPilotos(FILE* pFile, LinkedList* pArrayList)
                 {
                     if(!ll_add(pArrayList, pAuxPiloto))
                     {
-                        retorno = atoi(idPiloto);
+                        retorno = 0;
                     }
                 }
             }
@@ -75,44 +82,3 @@ int parser_FromTextPilotos(FILE* pFile, LinkedList* pArrayList)
     }
     return retorno;
 }
-
-
-/** \brief Toma uno a uno los datos de los empleados
- *
- * \param pFile FILE* Puntero a un archivo
- * \param pArrayList LinkedList* Puntero a la lista enlazada
- * \return int [-1] si puntero a archivo o puntero a la lista son NULL, caso contrario retorna el ultimo ID
- *
- */
-int parser_FromBinary(FILE* pFile, LinkedList* pArrayList)
-{
-    int retorno=-1;
-    Viaje* pAuxViaje;
-    int lastId;
-    if(pArrayList != NULL && pFile != NULL)
-    {
-        do
-        {
-            pAuxViaje = viaje_new();
-            if(fread(pAuxViaje,sizeof(Viaje),1, pFile) == 1)
-            {
-                if(pAuxViaje != NULL)
-                {
-                    if(!ll_add(pArrayList, pAuxViaje))
-                    {
-                        lastId = pAuxViaje->idVuelo;
-                        retorno = lastId;
-                    }
-                }
-            }
-            else
-            {
-                break;
-            }
-        }
-        while(feof(pFile)==0);
-        fclose(pFile);
-    }
-    return retorno;
-}
-

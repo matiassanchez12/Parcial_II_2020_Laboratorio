@@ -1,0 +1,10 @@
+idVuelo,idAvion,idPiloto,fecha,destino,cantPasajeros,horaDespegue,horaLlegada, precio
+93,4,4,26/11/2019,Portugal,74,13,22,74000
+65,1,4,26/11/2019,Portugal,54,17,18,54000
+96,2,2,27/11/2019,Portugal,84,15,20,84000
+50,3,2,28/11/2019,Portugal,65,17,18,65000
+46,4,2,28/11/2019,Portugal,91,17,19,91000
+49,3,3,28/11/2019,Portugal,63,16,21,63000
+11,1,1,26/11/2019,Portugal,100,17,21,100000
+1,4,4,28/11/2019,Portugal,95,15,18,95000
+5,5,3,27/11/2019,Portugal,55,14,19,55000

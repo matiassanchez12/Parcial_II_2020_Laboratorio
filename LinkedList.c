@@ -249,7 +249,6 @@ int ll_remove(LinkedList* this,int index)
             this->pFirstNode = next;
 
             free(actual);
-            this->size --;
         }
         else
         {
@@ -257,8 +256,8 @@ int ll_remove(LinkedList* this,int index)
             prev->pNextNode = next;
 
             free(actual);
-            this->size --;
         }
+        this->size --;
         returnAux = 0;
     }
     return returnAux;
@@ -638,12 +637,12 @@ LinkedList* ll_filter(LinkedList* this, int (*fn)(void* element))
             }
         }
     }
- return auxList;
+    return auxList;
 }
 
- LinkedList* ll_filter_parametro(LinkedList* this, int (*fn)(void* element, char* auxCadena), char* cadena)
- {
-     LinkedList* auxList = ll_newLinkedList();
+LinkedList* ll_filter_parametro(LinkedList* this, int (*fn)(void* element, char* auxCadena), char* cadena)
+{
+    LinkedList* auxList = ll_newLinkedList();
     int i;
     int lenll;
     void* auxElement;
@@ -663,5 +662,28 @@ LinkedList* ll_filter(LinkedList* this, int (*fn)(void* element))
             }
         }
     }
- return auxList;
- }
+    return auxList;
+}
+
+
+LinkedList* ll_map(LinkedList* this, void*(*pFunc) (void* element))
+{
+    LinkedList* auxList = ll_newLinkedList();
+    int i;
+    void* auxElement;
+    void* auxElement2;
+    if(this != NULL && pFunc != NULL)
+    {
+        for(i = 0; i < ll_len(this); i ++)
+        {
+            auxElement = ll_get(this,i);
+            if(auxElement != NULL)
+            {
+                auxElement2 = pFunc(auxElement);
+                ll_add(auxList, auxElement2);
+            }
+        }
+    }
+    return auxList;
+}
+

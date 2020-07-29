@@ -4,10 +4,7 @@
 #include "utn.h"
 #define DEST_LEN 50
 #define FECHA_LEN 100
-/*
-int idVuelo, int idAvion, int idPiloto, int cantPasaj, int hrDespegue, int hrLlegada;
-char fecha[FECHA_LEN];
-char destino[DEST_LEN];*/
+
 typedef struct
 {
     int idVuelo;
@@ -18,6 +15,7 @@ typedef struct
     int cantPasajeros;
     int horaDespegue;
     int horaLlegada;
+    int importe;
 }Viaje;
 
 int viaje_delete(Viaje*);
@@ -25,7 +23,9 @@ Viaje* viaje_new(void);
 Viaje* viaje_newParameters(int, int, int, char*, char*, int, int, int);
 
 int viaje_printOneViaje(Viaje* this, char* nombrePiloto);
+int viaje_printOneViajeConPrecio(Viaje* this, char* nombrePiloto);
 int viaje_getAll(Viaje* this,int* idVuelo, int* idAvion, int* idPiloto, int* cantPasajeros, int* horaDespegue, int* horaLlegada, char* fecha, char* destino);
+int viaje_getAllSinIdPiloto(Viaje* this,int* idVuelo, int* idAvion, int* cantPasajeros, int* horaDespegue, int* horaLlegada, char* fecha, char* destino);
 
 int viaje_setIdVuelo(Viaje* this,int idVuelo);
 int viaje_getIdVuelo(Viaje* this,int* idVuelo);
@@ -50,6 +50,9 @@ int viaje_getHrDespegue(Viaje* this,int* HrDespegue);
 
 int viaje_setHrLlegada(Viaje* this,int HrLlegada);
 int viaje_getHrLlegada(Viaje* this,int* HrLlegada);
+
+int viaje_setPrecio(Viaje* this,int importe);
+int viaje_getPrecio(Viaje* this,int* importe);
 
 void viaje_funcCabecera(int option);
 

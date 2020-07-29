@@ -21,7 +21,8 @@ int gen_mainMenu(int* option)
         printf("\n6. Listar vuelos a Portugal");
         printf("\n7. Filtrar a Alex Lifeson");
         printf("\n8. Filtrar la lista de pilotos por nombre");
-        printf("\n9. Salir");
+        printf("\n9. Precio de vuelos.");
+        printf("\n10. Salir");
 
         if(utn_getNumber(option, "\n\nSeleccionar una opcion: ", "Error, fuera de rango.", 1, 10, 2))
         {
